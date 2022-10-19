@@ -28,43 +28,6 @@ public class hw1 {
         }
     }
 
-    /*public static void HeapSort(int array[]){
-        void Change_el(int input_index, int size){
-            int left_el_index = input_index * 2 + 1;
-            int right_el_index = input_index * 2 + 2;
-            int cur_index = input_index;
-
-            if (left_el_index < size && array[cur_index] < array[left_el_index]){
-                cur_index = left_el_index;
-            }
-            if ((right_el_index < size && array[cur_index] < array[right_el_index])){
-                cur_index = right_el_index;
-            }
-
-            if (cur_index == input_index){
-                return;
-            }
-
-            Swap(cur_index, input_index);
-            Change_el(cur_index, size);
-        }
-
-        void Swap(int ind_1, int ind_2){
-                int temp = array[ind_1];
-                array[ind_1] = array[ind_2];
-                array[ind_2] = temp;
-                size -= 1;
-        }
-
-        for (int j = array.length / 2 - 1; j >= 0; j--) 
-            Change_el(j, array.length);
-
-        for (int j = array.length - 1; j >= 0; j--) {
-            Swap(0, j);
-            Change_el(0, j);
-        }
-    }*/
-
     public static void HeapSort(int array[]){
         int size = array.length;
         for (int i = size / 2 - 1; i >= 0; i--) {
