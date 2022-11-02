@@ -102,43 +102,46 @@ public class hw3 {
         }
     }
 
-    public static void way(int x, int y, int width, int height, int [][] field, int [][] way_points){
+    public static void way(int x, int y, int width, int height, int [][] field, int [][] way_points, int i){
         int way_len = field[x][y];
-        int i = 0;
         if (y + 1 < height){
             if ((field[x][y + 1] < way_len) && (field[x][y + 1] != wall)){
-                i += 1;
-                way_points[0][i] = x;
-                way_points[1][i] = y + 1;
-                way(x, y + 1, width, height, field, way_points);
+                if (way_points[0][i] == 0){
+                    way_points[0][i] = x;
+                    way_points[1][i] = y + 1;
+                    i += 1;
+                    way(x, y + 1, width, height, field, way_points, i);
+                }
             }
         }
-        else{
-            if (x + 1 < width){
-                if ((field[x + 1][y] < way_len) && (field[x + 1][y] != wall)){
-                    i += 1;
+        if (x + 1 < width){
+            if ((field[x + 1][y] < way_len) && (field[x + 1][y] != wall)){
+                if (way_points[0][i] == 0){
                     way_points[0][i] = x + 1;
                     way_points[1][i] = y;
-                    way(x + 1, y, width, height, field, way_points);
+                    i += 1;
+                    way(x + 1, y, width, height, field, way_points, i);
                 }
             }
-            else{
-                if (x - 1 >= 0){
-                    if ((field[x - 1][y] < way_len) && (field[x - 1][y] != wall)){
-                        i += 1;
-                        way_points[0][i] = x - 1;
-                        way_points[1][i] = y;
-                        way(x - 1, y, width, height, field, way_points);
-                    }
+        }
+        if (x - 1 >= 0){
+            if ((field[x - 1][y] < way_len) && (field[x - 1][y] != wall)){
+                if (way_points[0][i] == 0){
+                    way_points[0][i] = x - 1;
+                    way_points[1][i] = y;
+                    i += 1;
+                    way(x - 1, y, width, height, field, way_points, i);
                 }
-                if (y - 1 >= 0){
-                    if ((field[x][y - 1] < way_len) && (field[x][y - 1] != wall)){
-                        i += 1;
-                        way_points[0][i] = x;
-                        way_points[1][i] = y - 1;
-                        way(x, y - 1, width, height, field, way_points);
-                    }
-                } 
+            }
+        }
+        if (y - 1 >= 0){
+            if ((field[x][y - 1] < way_len) && (field[x][y - 1] != wall)){
+                if (way_points[0][i] == 0){
+                    way_points[0][i] = x;
+                    way_points[1][i] = y - 1;
+                    i += 1;
+                    way(x, y - 1, width, height, field, way_points, i);
+                }
             }
         }
     }
@@ -174,20 +177,21 @@ public class hw3 {
             System.out.println();
         }
         int [][] way_points = new int [2][100];
-        way(finish_x, finish_y, width, height, field, way_points);
+        way(finish_x, finish_y, width, height, field, way_points, 0);
 
         int min_steps = field[finish_x][finish_y];
+        System.out.println();
 
         for (int i = 0; i < 2; i++) {
             if (i == 0){
-                String s = "x: ";
-                System.out.printf(String.format("%-4s", s));
+                String s = "row: ";
+                System.out.printf(String.format("%-8s", s));
             }
             else{
-                String s = "y: ";
-                System.out.printf(String.format("%-4s", s));
+                String s = "column: ";
+                System.out.printf(String.format("%-8s", s));
             }
-            for (int j = min_steps; j > 0; j--) {
+            for (int j = min_steps - 1; j > 0; j--) {
                 System.out.printf(String.format("%-4d", way_points[i][j]));
             }
             System.out.println();
