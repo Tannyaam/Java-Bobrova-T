@@ -1,6 +1,3 @@
-import java.util.Random;
-import java.util.List;
-
 public class hw4 {
     public static void main(String[] args) {
         int [] array = {1, 8, 4, -3, 2, 8, 6, 4, 5};
