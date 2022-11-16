@@ -25,7 +25,7 @@ public class hw4 {
   
    public static void quicksort (int[] array, int start, int end)
    {
-       if ( start >= end ) 
+       if (start >= end) 
        {
            return;
        }
